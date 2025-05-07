@@ -39,12 +39,34 @@ void filestat2(){
 
 //파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(){
-    
+    //stat1이 유효한 지 확인
+    if(stat1.st_mtime){
+        //tm 구조체로 변환
+        time1 = localtime(&stat1.st_mtime);
+        //변환 실패 시 에러
+        if(!time1){
+            fprintf(stderr,"ERROR : Failed to get time1\n");
+        }
+    } else {
+        //파일 정보가 없으면 에러
+        fprintf(stderr, "ERROR : text1 is not available\n");
+    }
 }
 
 //파일 2의 시간 정보를 가져오는 함수 작성
 void filetime2(){
-    
+    //stat2가 유효한 지 확인
+    if(stat2.st_mtime){
+        //tm 구조체로 변환
+        time2 = localtime(&stat2.st_mtime);
+        //변환 실패 시 에러
+        if(!time2){
+            fprintf(stderr,"ERROR : Failed to get time2\n");
+        }
+    } else {
+        //파일 정보가 없으면 에러
+        fprintf(stderr, "ERROR : text2 is not available\n");
+    }
 }
 
 //두 개의 파일 크기를 비교하는 함수 작성
