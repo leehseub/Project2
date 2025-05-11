@@ -26,14 +26,14 @@ int main()
     stat("text1", buf1);
     stat("text2", buf2);
 
-    //filestat1();
-    //filestat2();
-    // filetime1();
-    // filetime2();
+    filestat1();
+    filestat2();
+    filetime1();
+    filetime2();
     sizecmp(buf1, buf2);
     blockcmp(buf1, buf2);
-    // datecmp();
-    // timecmp();
+    datecmp();
+    timecmp();
    
     return 0;
 }
