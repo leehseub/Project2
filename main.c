@@ -51,12 +51,22 @@ void filestat2(){
 
 //파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(){
-    
+    //time_t -> tm 구조체로 변환
+    time1 = localtime(&stat1.st_mtime);
+    //변환 실패 시 에러 출력      
+    if(!time1){
+        fprintf(stderr,"ERROR : Failed to get time1\n");
+    }
 }
 
 //파일 2의 시간 정보를 가져오는 함수 작성
 void filetime2(){
-    
+    //time_t -> tm 구조체로 변환
+    time2 = localtime(&stat2.st_mtime);
+    //변환 실패 시 에러 출력
+    if(!time2){
+        fprintf(stderr,"ERROR : Failed to get time2\n");
+    }
 }
 */
 
