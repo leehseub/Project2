@@ -45,7 +45,7 @@ void filestat1(){
     // 파일 크기: stat.st_size
     // 블록 수: stat.st_blocks
     // UID: stat.st_uid
-    // GID: stat.st_gid
+    // GID: stat.st_gid 
 
     if(stat("text1", &stat1) == -1){
         perror("파일 1 정보 오류");
