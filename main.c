@@ -85,7 +85,6 @@ void filetime2(){
         fprintf(stderr,"ERROR : Failed to get time2\n");
     }
 }
-*/
 
 //두 개의 파일 크기를 비교하는 함수 작성
 void sizecmp(struct stat* buf1, struct stat* buf2)
