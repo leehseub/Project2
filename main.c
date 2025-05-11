@@ -5,16 +5,16 @@
 #include <time.h>
 
 struct stat stat1, stat2;
-//struct tm *time1, *time2;
+struct tm *time1, *time2;
 
 void filestat1();
 void filestat2();
-//void filetime1();
-//void filetime2();
+void filetime1();
+void filetime2();
 void sizecmp(struct stat* buf1, struct stat* buf2);
 void blockcmp(struct stat* buf1, struct stat* buf2);
-//void datecmp();
-//void timecmp();
+void datecmp();
+void timecmp();
 
 int main()
 {
@@ -115,7 +115,6 @@ void blockcmp(struct stat* buf1, struct stat* buf2)
 
 }
 
-/*
 //두 개의 파일 수정 날짜를 비교하는 함수 작성
 void datecmp(){
     
@@ -125,4 +124,4 @@ void datecmp(){
 void timecmp(){
     
 }
-*/
+
