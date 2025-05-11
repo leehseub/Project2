@@ -6,6 +6,7 @@
 
 struct stat stat1, stat2;
 struct tm *time1, *time2;
+struct tm time1_data, time2_data;
 
 void filestat1();
 void filestat2();
@@ -70,6 +71,7 @@ void filestat2(){
 void filetime1(){
     //time_t -> tm 구조체로 변환
     time1 = localtime(&stat1.st_mtime);
+    time1_data = *time1;
     //변환 실패 시 에러 출력      
     if(!time1){
         fprintf(stderr,"ERROR : Failed to get time1\n");
@@ -80,6 +82,7 @@ void filetime1(){
 void filetime2(){
     //time_t -> tm 구조체로 변환
     time2 = localtime(&stat2.st_mtime);
+    time2_data = *time2;
     //변환 실패 시 에러 출력
     if(!time2){
         fprintf(stderr,"ERROR : Failed to get time2\n");
@@ -116,17 +119,17 @@ void blockcmp(struct stat* buf1, struct stat* buf2)
 
 //두 개의 파일 수정 날짜를 비교하는 함수 작성
 void datecmp(){
-    if (time1->tm_mon < time2->tm_mon){
+    if (time1_data.tm_mon < time2_data.tm_mon){
         printf("text1 is early\n");
     }
-    else if (time1->tm_mon > time2->tm_mon){
+    else if (time1_data.tm_mon > time2_data.tm_mon){
         printf("text2 is early\n");
     }
     else { //같은 월일 경우 일 비교
-        if (time1->tm_mday < time2->tm_mday){
+        if (time1_data.tm_mday < time2_data.tm_mday){
             printf("text1 is early\n");
         }
-        else if (time1->tm_mday > time2->tm_mday){
+        else if (time1_data.tm_mday > time2_data.tm_mday){
             printf("text2 is early\n");
         }
         else{
@@ -137,17 +140,17 @@ void datecmp(){
 
 //두 개의 파일 수정 시간을 비교하는 함수 작성
 void timecmp(){
-    if (time1->tm_hour < time2->tm_hour){
+    if (time1_data.tm_hour < time2_data.tm_hour){
         printf("text1 is early\n");
     }
-    else if (time1->tm_hour > time2->tm_hour){
+    else if (time1_data.tm_hour > time2_data.tm_hour){
         printf("text2 is early\n");
     }
     else { // 같은 시일 경우 분 비교
-        if (time1->tm_min < time2->tm_min){
+        if (time1_data.tm_min < time2_data.tm_min){
             printf("text1 is early\n");
         }    
-        else if (time1->tm_min > time2->tm_min){
+        else if (time1_data.tm_min > time2_data.tm_min){
             printf("text2 is early\n");
         }
         else{
