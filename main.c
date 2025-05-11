@@ -12,27 +12,19 @@ void filestat1();
 void filestat2();
 void filetime1();
 void filetime2();
-void sizecmp(struct stat* buf1, struct stat* buf2);
-void blockcmp(struct stat* buf1, struct stat* buf2);
+void sizecmp();
+void blockcmp();
 void datecmp();
 void timecmp();
 
 int main()
 {
-    struct stat stat1, stat2;
-
-    struct stat* buf1 = &stat1;
-    struct stat* buf2 = &stat2;
-
-    stat("text1", buf1);
-    stat("text2", buf2);
-
     filestat1();
     filestat2();
     filetime1();
     filetime2();
-    sizecmp(buf1, buf2);
-    blockcmp(buf1, buf2);
+    sizecmp();
+    blockcmp();
     datecmp();
     timecmp();
    
@@ -90,13 +82,13 @@ void filetime2(){
 }
 
 //두 개의 파일 크기를 비교하는 함수 작성
-void sizecmp(struct stat* buf1, struct stat* buf2)
+void sizecmp()
 {
     printf("size compare\n");
 
-    if (buf1->st_size > buf2->st_size)
+    if (stat1.st_size > stat2.st_size)
 	    printf("text1 is bigger\n\n");
-    else if (buf1 -> st_size == buf2 -> st_size)
+    else if (stat1.st_size == stat2.st_size)
 	    printf("sizes are equal\n\n");
     else
 	    printf("text2 is bigger\n\n");
@@ -104,13 +96,13 @@ void sizecmp(struct stat* buf1, struct stat* buf2)
 }
 
 //두 개의 파일 블락 수를 비교하는 함수 작성
-void blockcmp(struct stat* buf1, struct stat* buf2)
+void blockcmp()
 {
     printf("block compare\n");
 
-    if (buf1->st_blocks > buf2->st_blocks)
+    if (stat1.st_blocks > stat2.st_blocks)
             printf("text1 is bigger\n\n");
-    else if (buf1 -> st_blocks == buf2 -> st_blocks)
+    else if (stat1.st_blocks == stat2.st_blocks)
             printf("sizes are equal\n\n");
     else
             printf("text2 is bigger\n\n");
