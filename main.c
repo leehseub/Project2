@@ -7,8 +7,8 @@
 struct stat stat1, stat2;
 //struct tm *time1, *time2;
 
-//void filestat1();
-//void filestat2();
+void filestat1();
+void filestat2();
 //void filetime1();
 //void filetime2();
 void sizecmp(struct stat* buf1, struct stat* buf2);
@@ -26,30 +26,47 @@ int main()
     stat("text1", buf1);
     stat("text2", buf2);
 
-   // filestat1();
-   // filestat2();
-   // filetime1();
-   // filetime2();
+    //filestat1();
+    //filestat2();
+    // filetime1();
+    // filetime2();
     sizecmp(buf1, buf2);
     blockcmp(buf1, buf2);
-   // datecmp();
-   // timecmp();
+    // datecmp();
+    // timecmp();
    
     return 0;
 }
 
-/*
-//파일 1의 정보를 가져오는 함수 작성
+// 파일 1의 정보를 가져오는 함수 작성
 void filestat1(){
-    
+
+    // 파일 크기: stat.st_size
+    // 블록 수: stat.st_blocks
+    // UID: stat.st_uid
+    // GID: stat.st_gid
+
+    if(stat("text1", &stat1) == -1){
+        perror("파일 1 정보 오류");
+        return;
+    }
 }
 
-//파일 2의 정보를 가져오는 함수 작성
+// 파일 2의 정보를 가져오는 함수 작성
 void filestat2(){
-    
+
+    // 파일 크기: stat.st_size
+    // 블록 수: stat.st_blocks
+    // UID: stat.st_uid
+    // GID: stat.st_gid
+
+    if(stat("text2", &stat2) == -1){
+        perror("파일 2 정보 오류");
+        return;
+    }
 }
 
-//파일 1의 시간 정보를 가져오는 함수 작성
+// 파일 1의 시간 정보를 가져오는 함수 작성
 void filetime1(){
     //time_t -> tm 구조체로 변환
     time1 = localtime(&stat1.st_mtime);
@@ -59,7 +76,7 @@ void filetime1(){
     }
 }
 
-//파일 2의 시간 정보를 가져오는 함수 작성
+// 파일 2의 시간 정보를 가져오는 함수 작성
 void filetime2(){
     //time_t -> tm 구조체로 변환
     time2 = localtime(&stat2.st_mtime);
